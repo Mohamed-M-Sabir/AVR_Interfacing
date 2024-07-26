@@ -11,7 +11,6 @@
 #include"../LIB/std_types.h"
 
 
-
 void led_pattern()
 {
 
@@ -30,16 +29,16 @@ void led_pattern()
 
 			for(PinCounter=0;PinCounter<=7;PinCounter++)
 			{
-				Dio_VoidSetPinValue(A,PinCounter);
-				Dio_VoidSetPinValue(B,PinCounter);
-				Dio_VoidSetPinValue(C,PinCounter);
-				Dio_VoidSetPinValue(D,PinCounter);
+				Dio_VoidSetPinValue(A,PinCounter,HIGH);
+				Dio_VoidSetPinValue(B,PinCounter,HIGH);
+				Dio_VoidSetPinValue(C,PinCounter,HIGH);
+				Dio_VoidSetPinValue(D,PinCounter,HIGH);
 
 				_delay_ms(1000);
-				Dio_VoidClearPinValue(A,PinCounter);
-				Dio_VoidClearPinValue(B,PinCounter);
-				Dio_VoidClearPinValue(C,PinCounter);
-				Dio_VoidClearPinValue(D,PinCounter);
+				Dio_VoidSetPinValue(A,PinCounter,LOW);
+				Dio_VoidSetPinValue(B,PinCounter,LOW);
+				Dio_VoidSetPinValue(C,PinCounter,LOW);
+				Dio_VoidSetPinValue(D,PinCounter,LOW);
 
 
 				_delay_ms(1000);
@@ -49,11 +48,11 @@ void led_pattern()
 			for(PortCounter=0;PortCounter<=3;PortCounter++)
 				{
 
-				    Dio_VoidSetPortValue(PortCounter);
+				    Dio_VoidSetPortValue(PortCounter,HIGH);
 
 					_delay_ms(1000);
 
-					Dio_VoidClearPortValue(PortCounter);
+				    Dio_VoidSetPortValue(PortCounter,LOW);
 
 
 					_delay_ms(1000);
@@ -64,3 +63,4 @@ void led_pattern()
 
 
 }
+

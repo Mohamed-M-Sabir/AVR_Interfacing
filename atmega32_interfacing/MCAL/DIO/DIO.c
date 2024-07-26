@@ -41,28 +41,17 @@ void Dio_VoidSetPortDirection(PORT_t port,DIRECTION_t direction)
 
 
 
-void Dio_VoidSetPortValue(PORT_t port)
+void Dio_VoidSetPortValue(PORT_t port,uint8_t value)
 {
 	switch(port)
 	{
-	case A:PORTA_REG=0xFF;break;
-	case B:PORTB_REG=0xFF;break;
-	case C:PORTC_REG=0xFF;break;
-	case D:PORTD_REG=0xFF;break;
+	case A:PORTA_REG=value;break;
+	case B:PORTB_REG=value;break;
+	case C:PORTC_REG=value;break;
+	case D:PORTD_REG=value;break;
 	}
 }
 
-
-void Dio_VoidClearPortValue(PORT_t port)
-{
-	switch(port)
-	{
-	case A:PORTA_REG=0x00;break;
-	case B:PORTB_REG=0x00;break;
-	case C:PORTC_REG=0x00;break;
-	case D:PORTD_REG=0x00;break;
-	}
-}
 
 
 void Dio_VoidTogglePortValue(PORT_t port)
@@ -108,8 +97,10 @@ void Dio_VoidSetPinDirection(PORT_t port,Pin_t pin,DIRECTION_t direction)
 		}
 }
 
-void Dio_VoidSetPinValue(PORT_t port,Pin_t pin)
+void Dio_VoidSetPinValue(PORT_t port,Pin_t pin,uint8_t value)
 {
+	if(value==0xFF)
+	{
 	switch(port)
 		{
 	    case A:set_bit(PORTA_REG,pin);break;
@@ -117,18 +108,22 @@ void Dio_VoidSetPinValue(PORT_t port,Pin_t pin)
 		case C:set_bit(PORTC_REG,pin);break;
 		case D:set_bit(PORTD_REG,pin);break;
 		}
+	}
+	else if(value==0x00)
+	{
+		switch(port)
+		{
+		case A:clear_bit(PORTA_REG,pin);break;
+		case B:clear_bit(PORTB_REG,pin);break;
+		case C:clear_bit(PORTC_REG,pin);break;
+		case D:clear_bit(PORTD_REG,pin);break;
+		}
+
+	}
+
 }
 
-void Dio_VoidClearPinValue(PORT_t port,Pin_t pin)
-{
-	switch(port)
-			{
-		    case A:clear_bit(PORTA_REG,pin);break;
-			case B:clear_bit(PORTB_REG,pin);break;
-			case C:clear_bit(PORTC_REG,pin);break;
-			case D:clear_bit(PORTD_REG,pin);break;
-			}
-}
+
 
 void Dio_VoidTogglePinValue(PORT_t port,Pin_t pin)
 {
@@ -141,9 +136,9 @@ void Dio_VoidTogglePinValue(PORT_t port,Pin_t pin)
 			}
 }
 
-VALUE_t Dio_VoidGetPinValue(PORT_t port,Pin_t pin)
+uint8_t Dio_VoidGetPinValue(PORT_t port,Pin_t pin)
 {
-	VALUE_t value;
+	uint8_t value;
 	switch(port)
 			{
 			case A:value=get_bit(PinA_REG,pin);break;

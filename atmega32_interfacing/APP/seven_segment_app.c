@@ -14,7 +14,7 @@ void sev_seg()
 
 	 sev_seg_enable();
 
-	 for(sev_counter=0;sev_counter<=9;sev_counter++){
+	 for(sev_counter=0;sev_counter<=9;sev_counter+=2){
 	   sev_seg_write_number(sev_counter);
 	   _delay_ms(2000);
 

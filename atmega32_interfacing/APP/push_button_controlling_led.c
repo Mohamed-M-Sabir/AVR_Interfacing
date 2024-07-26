@@ -11,26 +11,25 @@
 #include"../MCAL//DIO/DIO.h"
 #include"../LIB/std_types.h"
 
-
 void push_button()
 {
 
 	Dio_VoidSetPinDirection( A, 0,INPUT);
 	Dio_VoidSetPinDirection( A, 1,OUTPUT);
 
-	VALUE_t Btn_value;
+	uint8_t Btn_value;
 	while(1)
 	{
 		Btn_value=Dio_VoidGetPinValue(A,0);
 
-		if(HIGH == Btn_value  )
+		if(1 == Btn_value  )
 		{
-			Dio_VoidSetPinValue(A,1);
+			Dio_VoidSetPinValue(A,1,HIGH);
 
 		}
 
 
-			Dio_VoidClearPinValue(A,1);
+		Dio_VoidSetPinValue(A,1,LOW);
 
 
 
@@ -49,3 +48,5 @@ void push_button()
 
 
 }
+
+

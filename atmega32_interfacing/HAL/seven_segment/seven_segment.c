@@ -20,7 +20,7 @@ void sev_seg_intialization()
 
 void sev_seg_enable()
 {
-	 Dio_VoidSetPinValue(C,0);
+	 Dio_VoidSetPinValue(C,0,HIGH);
 
 }
 
@@ -35,22 +35,22 @@ void sev_seg_write_number(uint8_t num)
 	d=get_bit(num,3);
 
 	if(a)
-		Dio_VoidSetPinValue(C,1);
+		Dio_VoidSetPinValue(C,1,HIGH);
 	else
-		Dio_VoidClearPinValue(C,1);
+		Dio_VoidSetPinValue(C,1,LOW);
 
 	if(b)
-			Dio_VoidSetPinValue(C,2);
+			Dio_VoidSetPinValue(C,2,HIGH);
 		else
-			Dio_VoidClearPinValue(C,2);
+			Dio_VoidSetPinValue(C,2,LOW);
 
 	if(c)
-			Dio_VoidSetPinValue(C,3);
+			Dio_VoidSetPinValue(C,3,HIGH);
 		else
-			Dio_VoidClearPinValue(C,3);
+			Dio_VoidSetPinValue(C,3,LOW);
 
 	if(d)
-			Dio_VoidSetPinValue(C,4);
+			Dio_VoidSetPinValue(C,4,HIGH);
 		else
-			Dio_VoidClearPinValue(C,4);
+			Dio_VoidSetPinValue(C,4,LOW);
 }

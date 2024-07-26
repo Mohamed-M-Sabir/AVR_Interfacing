@@ -13,14 +13,15 @@
 //#include"LIB/bit_math.h"
 //void led_pattern();
 //void push_button();
-void sev_seg();
+//void sev_seg();
+void LCD_Display();
 int main(){
 
 	//led_pattern();
 	//push_button();
 
-	 sev_seg();
+	 //sev_seg();
 
-	return 0;
+	LCD_Display();
 
 }
